@@ -657,6 +657,10 @@
 #wrap.main .section.trans{
     background:#ECF1F6;
 }
+#wrap.main .section.trans #lottie-trans{
+    width:36rem;
+    height:25.6rem;
+}
 /* use */
 #wrap.main .section.use{
     padding:6rem 0;
