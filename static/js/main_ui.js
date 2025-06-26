@@ -11,7 +11,6 @@ var mainUi = {
 	'init':function(){
 		mainUi.eventSwiper();
         mainUi.mainCardSwiper();
-        mainUi.animateTrans();
 	},
 
 	/* ----------------------
@@ -72,13 +71,4 @@ var mainUi = {
 			},
 		});
 	},
-	'animateTrans':function(){
-        lottie.loadAnimation({
-            container: document.getElementById('lottie-container'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: '../images/json/trans.json' //JSON 경로
-        });
-    },
 }
