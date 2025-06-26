@@ -340,21 +340,5 @@
             </div>
         </div>
         <!-- ============= [e]팝업 영역 ============= -->
-        <script>
-            AOS.init();
-
-            const anim = lottie.loadAnimation({
-              container: document.getElementById('lottie-container'),
-              renderer: 'svg',
-              loop: false, // 일부러 false로 두고
-              autoplay: true,
-              path: '../static/images/json/trans.json'
-            });
-            
-            anim.addEventListener('complete', () => {
-              console.log('재시작!');
-              anim.goToAndPlay(0, true); // 0초부터 다시 재생
-            });
-        </script>
     </body>
 </html>
