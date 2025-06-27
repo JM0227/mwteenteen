@@ -196,6 +196,12 @@
     background:url('../images/arr_more.png') no-repeat right center;
     background-size:1.6rem;
 }
+.btn-search{
+    width:2rem;
+    height:2rem;
+    background:url('../images/ico_search.png') no-repeat center;
+    background-size:2rem;
+}
 
 
 /* ----------------------
@@ -559,6 +565,14 @@
 }
 .field-box input[type="search"] + .btn-del{
     right:30px !important;
+}
+.field-box input[type="search"].no-bg{
+    background:none;
+}
+.field-box input + .btn-search{
+    position:absolute;
+    right:0;
+    bottom:1.4rem;
 }
 /* message */
 .field-box .msg{
