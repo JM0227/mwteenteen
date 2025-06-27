@@ -5,6 +5,11 @@
  * ======================================================================================================================= */
 $(function () {
     mainUi.init();
+
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
   });
 
 var mainUi = {
@@ -14,6 +19,9 @@ var mainUi = {
         mainUi.sectionEvent();
         mainUi.sectionCard();
         mainUi.sectionTrans();
+        mainUi.sectionUse();
+        mainUi.sectionVideo();
+        mainUi.sectionDownload();
 	},
     
     /* ----------------------
@@ -24,28 +32,34 @@ var mainUi = {
         observe: function (selector, delay = 200, callback) {
           const section = document.querySelector(selector);
           if (!section) return;
-    
+      
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
                 const animatedEls = entry.target.querySelectorAll('[data-animation]');
-    
+      
                 animatedEls.forEach((el, i) => {
                   setTimeout(() => {
-                    el.classList.add('in-view');
+                    const animationType = el.dataset.animation; // fade-up, fade-in 등
+                    el.classList.add('in-view'); // 공통 클래스
+                    if (animationType) {
+                      el.classList.add(`in-view-${animationType}`);
+                    }
+      
+                    // 마지막 요소 콜백 실행
                     if (i === animatedEls.length - 1 && typeof callback === 'function') {
                       callback();
                     }
                   }, i * delay);
                 });
-    
+      
                 observer.unobserve(entry.target);
               }
             });
           }, {
             threshold: 0.3
           });
-    
+      
           observer.observe(section);
         }
     },
@@ -63,14 +77,36 @@ var mainUi = {
 	* ----------------------
 	*/
     'sectionIntro': function () {
-        mainUi.scrollAnimation.observe('.section.intro', 150, function () {
-            const $btn = document.querySelector('.btn-group.bottom');
-            if ($btn) {
+        const $btn = document.querySelector('.btn-group.bottom');
+        const $intro = document.querySelector('.section.intro');
+
+        if (!$btn || !$intro) return;
+
+        let isRevealed = false;
+
+        // 1. scroll animation 끝난 후 버튼 등장
+        mainUi.scrollAnimation.observe('.section.intro', 150, () => {
             setTimeout(() => {
-                $btn.classList.add('in-view'); // fade-up!
-            }, 400); // intro 등장 후 0.4초 뒤 등장
-            }
+                $btn.classList.remove('hidden');
+                isRevealed = true;
+
+                // scroll 감지 시작
+                window.addEventListener('scroll', toggleBtnByScroll);
+                toggleBtnByScroll(); // 첫 진입 시 상태 체크
+            }, 400);
         });
+
+        // 2. scrollTop === 0 이면 버튼 숨기기
+        function toggleBtnByScroll() {
+            if (!isRevealed) return;
+
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            if (scrollTop === 0) {
+                $btn.classList.add('hidden');
+            } else {
+                $btn.classList.remove('hidden');
+            }
+        }
     },
     /* ----------------------
 	* event
@@ -161,6 +197,43 @@ var mainUi = {
                 loop: true,
                 autoplay: true,
                 path: 'https://jm0227.github.io/mwteenteen/static/images/json/trans.json' // JSON 경로
+            });
+        });
+    },
+    /* ----------------------
+	* use
+	* ----------------------
+	*/
+    'sectionUse': function () {
+        mainUi.scrollAnimation.observe('.section.use', 150, function () {
+            
+        });
+    },
+
+    /* ----------------------
+	* video
+	* ----------------------
+	*/
+    'sectionVideo': function () {
+        mainUi.scrollAnimation.observe('.section.video', 150, function () {
+            
+        });
+    },
+    /* ----------------------
+	* App Download
+	* ----------------------
+	*/
+    'sectionDownload': function () {
+        mainUi.scrollAnimation.observe('.section.download', 150, function () {
+            var swiper = new Swiper(".download-swiper", {
+                allowTouchMove: false,
+                simulateTouch: false,
+                loop: true,
+                autoplay:{
+                    delay:3000,
+                },
+                speed: 1000,
+                effect: "fade",
             });
         });
     },
