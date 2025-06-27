@@ -369,21 +369,32 @@
 /* scroll animation */
 [data-animation] {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
   }
-[data-animation].in-view {
+  
+  .in-view {
+    opacity: 1;
+  }
+  
+  .in-view-fade-up {
+    transform: translateY(0);
+  }
+  
+  .in-view-fade-in {
+    transform: none; /* fade만 */
+  }
+
+#wrap.main .btn-group.bottom {
+    transition: opacity 0.6s ease, transform 0.6s ease;
     opacity: 1;
     transform: translateY(0);
 }
-.hidden {
+
+#wrap.main .btn-group.bottom.hidden {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.6s ease;
-}
-.hidden.in-view {
-    opacity: 1;
-    transform: translateY(0);
+    pointer-events: none;
 }
 /* layout */
 #wrap.main #container{
@@ -706,6 +717,9 @@
 #wrap.main .section.use{
     padding-bottom:0;
 }
+#wrap.main .section.use .use-item-wrap{
+    position:relative;
+}
 #wrap.main .section.use .use-item{
     margin:0 2rem;
     padding:4rem 0;
@@ -722,6 +736,7 @@
 }
 #wrap.main .section.use .use-item .title-wrap .title em{
     font-style:normal;
+    color:#0871F3;
 }
 #wrap.main .section.use .use-item + .use-item{
     margin-top:2rem;
@@ -771,6 +786,23 @@
     right:3rem;
     top:5rem;
 }
+/* 초기 상태: 밑에서 올라올 준비 */
+#wrap.main .section.use .use-item[data-animation="fade-up"] {
+    opacity: 0;
+    transform: translateY(80px); /* 원하는 만큼 overlap 될 위치 */
+    transition: all 0.8s ease;
+  }
+  
+  /* in-view 시점: 정상 위치로 fade-up */
+  #wrap.main .section.use .use-item.in-view.in-view-fade-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #wrap.main .section.use .use-item + .use-item {
+    margin-top: -41rem; /* 겹치게 */
+    z-index: 1;
+    position: relative;
+  }
 /* video */
 #wrap.main .section.video .video-wrap {
     position:relative;
@@ -795,19 +827,16 @@
 #wrap.main .section.download{
     padding:0;
 }
-#wrap.main .section.download .img-wrap{
+#wrap.main .section.download .title-wrap{
+    padding-bottom:3.2rem;
+}
+#wrap.main .section.download .main-download-wrap{
     padding:6rem 2rem 10rem;
     background: #0C7CF3;
     background: linear-gradient(180deg,rgba(12, 124, 243, 1) 0%, rgba(255, 255, 255, 1) 90%);
 }
-#wrap.main .section.download .title-wrap{
-    padding-bottom:3.2rem;
-}
-[data-aos] {
-    opacity: 0;
-    transition-property: opacity, transform;
-    transition-duration: 0.8s;
-    transition-timing-function: ease-out;
+#wrap.main .section.download .btn-group{
+    margin-top:-0.4rem;
 }
 
 /* ---------------------------------------------------------------------------------------
