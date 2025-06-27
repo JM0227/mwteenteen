@@ -160,7 +160,7 @@ var mainUi = {
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
-                path: '../../images/json/trans.json' // JSON 경로
+                path: 'https://jm0227.github.io/mwteenteen/static/images/json/trans.json' // JSON 경로
             });
         });
     },
