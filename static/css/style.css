@@ -366,6 +366,26 @@
 /* ---------------------------------------------------------------------------------------
     03. Main Page
 --------------------------------------------------------------------------------------- */
+/* scroll animation */
+[data-animation] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+[data-animation].in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+}
+.hidden.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* layout */
 #wrap.main #container{
     padding:0;
 }
@@ -374,7 +394,7 @@
     text-align:center;
 }
 #wrap.main .section .title-wrap{
-    padding:0 0 2.4rem 2rem;
+    padding:0 0 3.2rem 2rem;
     text-align:left;
 }
 #wrap.main .section .title-wrap .title{
@@ -385,9 +405,6 @@
     font-size:var(--font-size-b1);
     line-height:var(--line-height-base);
     color:var(--modeGrayNonOpaque-700);
-}
-#wrap.main .btn-group.bottom{
-    display:none;
 }
 /* visual */
 #wrap.main .section.visual{
@@ -421,16 +438,27 @@
     margin-left:-2.2rem;
     background:url('../images/ico_scrolldown.png') no-repeat center;
     background-size:4.4rem;
-    animation: scroll-motion 1.5s infinite; 
+    animation: scroll-motion 1.5s infinite;
+    animation-delay: 1.5s; /* AOS delay랑 맞추기! */
+
 }
 #wrap.main .section.visual .btn-scrollDown span{
     display:none;
+}
+
+@media all and (min-width:1024px){
+    #wrap.main .section .title-wrap{
+        padding-left:0;
+        text-align:center;
+    }
 }
 /* intro */
 #wrap.main .section.intro{
     background:#ECF1F6;
 }
 #wrap.main .section.intro .bubble-wrap{
+    max-width:50rem;
+    margin:0 auto;
     padding:0 2rem;
 }
 #wrap.main .section.intro .bubble-list li{
@@ -464,6 +492,9 @@
     color:#fff;
 }
 /* event */
+#wrap.main .section.event{
+    padding-bottom:0;
+}
 #wrap.main .section.event .event-swiper{
     margin:0 2rem;
 }
@@ -590,8 +621,17 @@
 .cs-indicator .btn-autoplay.pause{
     background-image:url('../images/ico_pause.png');
 }
+@media (min-width: 1024px) {
+    .cs-indicator {
+      display: none;
+    }
+}
 /* card design */
 #wrap.main .section.card{
+    padding-bottom:0;
+}
+.main-card-wrap{
+    padding-top:6rem;
     background:#ECF1F6;
 }
 .main-card-swiper {
@@ -660,10 +700,11 @@
 #wrap.main .section.trans #lottie-trans{
     width:36rem;
     height:25.6rem;
+    margin:0 auto;
 }
 /* use */
 #wrap.main .section.use{
-    padding:6rem 0;
+    padding-bottom:0;
 }
 #wrap.main .section.use .use-item{
     margin:0 2rem;
@@ -752,19 +793,21 @@
 }
 /* app download */
 #wrap.main .section.download{
-    padding:6rem 2rem;
+    padding:0;
+}
+#wrap.main .section.download .img-wrap{
+    padding:6rem 2rem 10rem;
     background: #0C7CF3;
-    background: linear-gradient(180deg,rgba(12, 124, 243, 1) 0%, rgba(255, 255, 255, 1) 80%);
+    background: linear-gradient(180deg,rgba(12, 124, 243, 1) 0%, rgba(255, 255, 255, 1) 90%);
 }
 #wrap.main .section.download .title-wrap{
     padding-bottom:3.2rem;
 }
-#wrap.main .section.download .title-wrap .title,
-#wrap.main .section.download .title-wrap .sub-title{
-    color:#fff;
-}
-#wrap.main .section.download .img-wrap{
-    margin-bottom:4.2rem;
+[data-aos] {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-out;
 }
 
 /* ---------------------------------------------------------------------------------------
