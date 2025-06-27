@@ -160,7 +160,7 @@ var mainUi = {
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
-                path: '../images/json/trans.json' // JSON 경로
+                path: '../../images/json/trans.json' // JSON 경로
             });
         });
     },
