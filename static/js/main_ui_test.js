@@ -206,15 +206,22 @@ var mainUi = {
 	*/
     'sectionUse': function () {
         mainUi.scrollAnimation.observe('.section.use', 150, function () {
-            
-        });
+            lottie.loadAnimation({
+                container: document.getElementById('lottie-conven'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://jm0227.github.io/mwteenteen/static/images/json/use_conven.json' // JSON 경로
+            });
 
-        lottie.loadAnimation({
-            container: document.getElementById('lottie-conven'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://jm0227.github.io/mwteenteen/static/images/json/use_conven.json' // JSON 경로
+            lottie.loadAnimation({
+                container: document.getElementById('lottie-safe'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'https://jm0227.github.io/mwteenteen/static/images/json/use_safe.json' // JSON 경로
+            });
+            
         });
     },
 
