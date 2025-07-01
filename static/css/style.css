@@ -2,7 +2,7 @@
 
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.06.20
+ * LAST UPDATE : 2025.06.30
  * STYLE CSS
  * ======================================================================================================================= */
 
@@ -126,6 +126,7 @@
 --------------------------------------------------------------------------------------- */
 #wrap{
     position:relative;
+    overflow-x:hidden;
 }
 #wrap #container{
     position:relative;
@@ -719,13 +720,31 @@
 }
 #wrap.main .section.use .use-item-wrap{
     position:relative;
+    height: 300vh; /* 최소 이 정도 필요함 */
 }
-#wrap.main .section.use .use-item{
-    margin:0 2rem;
-    padding:4rem 0;
-    border-radius:1.6rem;
-    background:#E7F5FF;
-}
+
+#wrap.main .section.use .use-item {
+    position: sticky;
+    top: 10vh;
+    z-index: 1; /* 기본값 */
+    margin: 0;
+    padding: 5rem 2rem;
+    background: #E7F5FF;
+    border-radius: 1.6rem;
+    min-height: 100vh;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  /* 겹치기 위한 순서 조정: 뒤에 오는 카드가 위로 덮음 */
+  #wrap.main .section.use .use-item:nth-child(1) { z-index: 1; }
+  #wrap.main .section.use .use-item:nth-child(2) { z-index: 2; }
+  #wrap.main .section.use .use-item:nth-child(3) { z-index: 3; }
+  
+  /* 원하는 강조 효과 */
+  #wrap.main .section.use .use-item:hover {
+    transform: scale(1.02);
+    opacity: 1;
+  }
 #wrap.main .section.use .use-item .title-wrap{
     padding:0 0 2.4rem 0;
     text-align:center;
@@ -738,20 +757,33 @@
     font-style:normal;
     color:#0871F3;
 }
-#wrap.main .section.use .use-item + .use-item{
-    margin-top:2rem;
+#wrap.main .section.use .img-wrap{
+    position:relative;
 }
-#wrap.main .section.use .use-item.conven .img-wrap{
-    padding-top:5.5rem;
+#wrap.main .section.use .use-item.conven img{
+    width:16.7rem;
+}
+#wrap.main .section.use .use-item.conven .lottie-wrap{
+    width:27.8rem;
+    margin:0 auto;
+    padding-top:2rem; 
 }
 #wrap.main .section.use .use-item.safe{
     background:rgba(227, 247, 241, 1);
 }
+#wrap.main .section.use .use-item.safe .lottie-wrap{
+    width:21rem;
+    margin:0 auto;
+    padding-top:5rem; 
+}
+#wrap.main .section.use .use-item.safe img{
+    width:21.1rem;
+}
 #wrap.main .section.use .use-item.with{
     background:rgba(255, 245, 213, 1);
 }
-#wrap.main .section.use .img-wrap{
-    position:relative;
+#wrap.main .section.use .use-item.with img{
+    width:22.2rem;
 }
 #wrap.main .section.use .bubble{
     position:absolute;
@@ -786,23 +818,6 @@
     right:3rem;
     top:5rem;
 }
-/* 초기 상태: 밑에서 올라올 준비 */
-#wrap.main .section.use .use-item[data-animation="fade-up"] {
-    opacity: 0;
-    transform: translateY(80px); /* 원하는 만큼 overlap 될 위치 */
-    transition: all 0.8s ease;
-  }
-  
-  /* in-view 시점: 정상 위치로 fade-up */
-  #wrap.main .section.use .use-item.in-view.in-view-fade-up {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  #wrap.main .section.use .use-item + .use-item {
-    margin-top: -41rem; /* 겹치게 */
-    z-index: 1;
-    position: relative;
-  }
 /* video */
 #wrap.main .section.video .video-wrap {
     position:relative;
