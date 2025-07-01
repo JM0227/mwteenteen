@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
         <meta http-equiv="Cache-Control" content="no-cache">
+        <meta name="scroll-restoration" content="manual" />
         <!-- favicon -->
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
         <!-- css -->
-        <link rel="stylesheet" href="../static/css/lib/aos.css">
         <link rel="stylesheet" href="../static/css/lib/swiper-bundle.min.css">
         <link rel="stylesheet" href="../static/css/var.css">
         <link rel="stylesheet" href="../static/css/base.css">
@@ -17,11 +17,12 @@
         <link rel="stylesheet" href="../static/css/style.css">
         <!-- js -->
         <script src="../static/js/lib/jquery-3.3.1.min.js"></script>
-        <script src="../static/js/lib/aos.js"></script>
         <script src="../static/js/lib/swiper-bundle.min.js"></script>
         <script src="../static/js/lib/lottie.min.js"></script>
         <script src="../static/js/common_ui.js"></script>
         <script src="../static/js/main_ui.js"></script>
+        <style>
+        </style>
     </head>
     <body>
         <div id="wrap" class="main">
@@ -55,42 +56,58 @@
                 <div id="container">
                     <!-- visual -->
                     <div class="section visual">
-                        <div class="title-wrap" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1200">
-                            <p class="title">첫 금융,</p>
-                            <p class="title">나답게 시작해</p>
-                            <p class="sub-title">나를 담은 첫 카드, 우리틴틴</p>
+                        <div class="title-wrap">
+                            <p class="title" data-animation="fade-up">첫 금융,</p>
+                            <p class="title" data-animation="fade-up">나답게 시작해</p>
+                            <p class="sub-title" data-animation="fade-up">나를 담은 첫 카드, 우리틴틴</p>
                         </div>
-                        <div class="video-wrap" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1200">
+                        
+                        <div class="video-wrap" data-animation="fade-up">
                             <img src="../static/images/teenteeen-animated.png" width="320" alt="메인 이미지" />
                         </div>
-                        <div class="btn-scrollDown" data-aos="fade-in" data-aos-delay="500" data-aos-duration="1200"><span>스크롤을 내려보세요!</span></div>
+                        
+                        <div class="btn-scrollDown" data-animation="fade-up">
+                            <span>스크롤을 내려보세요!</span>
+                        </div>
                     </div>
                     <!-- //visual -->
                     <!-- intro -->
                     <div class="section intro">
-                        <div class="title-wrap" data-aos="fade-up" data-aos-duration="1200">
-                            <p class="title">우리틴틴은<br>어떤 서비스야?</p>
+                        <div class="title-wrap" data-animation="fade-up">
+                          <p class="title">우리틴틴은<br>어떤 서비스야?</p>
                         </div>
+                      
                         <div class="bubble-wrap">
-                            <ul class="bubble-list" data-aos="fade-up" data-aos-duration="800">
-                                <li><span>나도 가입할 수 있을까?</span></li>
-                            </ul>
-                            <ul class="bubble-list answer">
-                                <li data-aos="fade-up" data-aos-duration="800"><span>우리틴틴은 우리은행이 만든<br>만 7~18세 전용 서비스야</span></li>
-                                <li data-aos="fade-up" data-aos-duration="800"><span>💳 내 이름이 적힌 카드도 만들 수 있어!</li>
-                                <li data-aos="fade-up" data-aos-duration="800"><span>📱앱으로 용돈 쓰는 것도,<br>부모님한테 용돈 요청하는 것도 다 돼!</span></li>
-                                <li data-aos="fade-up" data-aos-duration="800"><span>틴틴만 가능한 꿀이벤트도 있어!</span></li>
-                            </ul>
+                          <!-- 질문 -->
+                          <ul class="bubble-list question" data-animation="fade-up">
+                            <li><span>나도 가입할 수 있을까?</span></li>
+                          </ul>
+                      
+                          <!-- 답변 -->
+                          <ul class="bubble-list answer">
+                            <li data-animation="fade-up">
+                              <span>우리틴틴은 우리은행이 만든<br>만 7~18세 전용 서비스야</span>
+                            </li>
+                            <li data-animation="fade-up">
+                              <span>💳 내 이름이 적힌 카드도 만들 수 있어!</span>
+                            </li>
+                            <li data-animation="fade-up">
+                              <span>📱앱으로 용돈 쓰는 것도,<br>부모님한테 용돈 요청하는 것도 다 돼!</span>
+                            </li>
+                            <li data-animation="fade-up">
+                              <span>틴틴만 가능한 꿀이벤트도 있어!</span>
+                            </li>
+                          </ul>
                         </div>
-                    </div>
+                     </div>
                     <!-- //intro -->
                     <!-- event -->
                     <div class="section event">
-                        <div class="title-wrap">
+                        <div class="title-wrap" data-animation="fade-up">
                             <p class="title">우리틴틴은<br>이벤트도 다양해!</p>
                         </div>
                         <!-- swiper -->
-                        <div class="swiper event-swiper">
+                        <div class="swiper event-swiper" data-animation="fade-up">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <!--
@@ -139,111 +156,105 @@
                     <!-- card -->
                     <div class="section card">
                         <div class="title-wrap">
-                            <p class="title">이건 ‘내 이름’이 적힌<br>첫 카드야</p>
-                            <p class="sub-title">신분증 없이도 본인명의 휴대폰만으로 신청 가능</p>
+                            <p class="title" data-animation="fade-up">이건 ‘내 이름’이 적힌<br>첫 카드야</p>
+                            <p class="sub-title" data-animation="fade-up">신분증 없이도 본인명의 휴대폰만으로 신청 가능</p>
                         </div>
-                        <div class="swiper main-card-swiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="img-card qwer1">
-                                        <div class="card front"></div>
-                                    </div> 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img-card qwer2">
-                                        <div class="card front"></div>
-                                    </div> 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img-card qwer3">
-                                        <div class="card front"></div>
-                                    </div> 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img-card black">
-                                        <div class="card front"></div>
-                                    </div> 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img-card silver">
-                                        <div class="card front"></div>
-                                    </div> 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img-card blue">
-                                        <div class="card front"></div>
-                                    </div> 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img-card cubic">
-                                        <div class="card front"></div>
-                                    </div> 
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img-card pink">
-                                        <div class="card front"></div>
-                                    </div> 
+                        <div class="main-card-wrap" data-animation="fade-up">
+                            <div class="swiper main-card-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="img-card qwer1">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="img-card qwer2">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="img-card qwer3">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="img-card black">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="img-card silver">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="img-card blue">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="img-card cubic">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="img-card pink">
+                                            <div class="card front"></div>
+                                        </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- //card swiper -->
                     </div>
                     <!-- //card -->
                     <!-- trans -->
                     <div class="section trans">
                         <div class="title-wrap">
-                            <p class="title">카드 하나로<br>대중교통도 이용해</p>
-                            <p class="sub-title">우리WON뱅킹 앱에서 교통 잔액 확인과 충전 가능</p>
+                            <p class="title" data-animation="fade-up">카드 하나로<br>대중교통도 이용해</p>
+                            <p class="sub-title" data-animation="fade-up">우리WON뱅킹 앱에서 교통 잔액 확인과 충전 가능</p>
                         </div>
-                        <div id="lottie-trans"></div>
+                        <div id="lottie-trans" data-animation="fade-up"></div>
                     </div>
                     <!-- //trans -->
                     <!-- use -->
                     <div class="section use">
-                        <div class="title-wrap">
+                        <div class="title-wrap" data-animation="fade-up">
                             <p class="title">우리틴틴이<br>더 궁금하다고?</p>
                         </div>
-                        <div class="use-item conven">
-                            <div class="title-wrap">
-                                <p class="title">어디서나 <em>편리하게</em><br>사용해요</p>
-                                <p class="sub-title">삼성월렛, 카카오 페이, 토스페이 등<br>간편결제 사용이 가능해요.</p>
+                        <div class="use-item-wrap">
+                            <div class="use-item conven">
+                                <div class="title-wrap">
+                                    <p class="title">어디서나 <em>편리하게</em><br>사용해요</p>
+                                    <p class="sub-title">삼성월렛, 카카오 페이, 토스페이 등<br>간편결제 사용이 가능해요.</p>
+                                </div>
+                                <div class="img-wrap"><img src="../static/images/img_main_use1.png" alt="이미지"></div>
                             </div>
-                            <div class="img-wrap">
-                                <span class="bubble">배달앱</span>
-                                <span class="bubble blue">편의점</span>
-                                <span class="bubble green">식당</span>
-                                <img src="../static/images/img_main_use1.png" width="166" alt="이미지">
+                            <div class="use-item safe">
+                                <div class="title-wrap">
+                                    <p class="title">마음 편히 <em>안전하게</em><br>사용해요</p>
+                                    <p class="sub-title">1금융권 우리은행이라 더 안심할 수 있어요.<br>(단, 청소년 유해업종은 결제 불가)</p>
+                                </div>
+                                <div class="img-wrap"><img src="../static/images/img_main_use2.png" alt="이미지"></div>
                             </div>
-                        </div>
-                        <div class="use-item safe">
-                            <div class="title-wrap">
-                                <p class="title">마음 편히 <em>안전하게</em><br>사용해요</p>
-                                <p class="sub-title">1금융권 우리은행이라 더 안심할 수 있어요.<br>(단, 청소년 유해업종은 결제 불가)</p>
-                            </div>
-                            <div class="img-wrap">
-                                <img src="../static/images/img_main_use2.png" width="211" alt="이미지">
-                            </div>
-                        </div>
-                        <div class="use-item with">
-                            <div class="title-wrap">
-                                <p class="title">우리가족, 친구들과 <br><em>함께쓰는</em> 용돈생활</p>
-                                <p class="sub-title">부모님과 연결되어 편리하게 용돈을 주고받아요.<br>친구들과 간편하게 송금하고 정산해요.</p>
-                            </div>
-                            <div class="img-wrap">
-                                <img src="../static/images/img_main_use3.png" width="222" alt="이미지">
+                            <div class="use-item with">
+                                <div class="title-wrap">
+                                    <p class="title">우리가족, 친구들과 <br><em>함께쓰는</em> 용돈생활</p>
+                                    <p class="sub-title">부모님과 연결되어 편리하게 용돈을 주고받아요.<br>친구들과 간편하게 송금하고 정산해요.</p>
+                                </div>
+                                <div class="img-wrap"><img src="../static/images/img_main_use3.png" alt="이미지"></div>
                             </div>
                         </div>
                     </div>
                     <!-- //use -->
                     <!-- video -->
                     <div class="section video">
-                        <div class="title-wrap">
-                            <p class="title">우리틴틴,<br>유튜브와 인스타에서 만나보세요!</p>
+                        <div class="title-wrap" data-animation="fade-up">
+                            <p class="title">유튜브와<br>인스타그램에서도<br>만날 수 있어</p>
                         </div>
-                        <div class="video-wrap">
+                        <div class="video-wrap" data-animation="fade-up">
                             <iframe width="100%" height="244px" src="https://www.youtube.com/embed/G9Yf3nomIJo?si=7QzaVDzdmSMvACg7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
-                        <div class="btn-group">
+                        <div class="btn-group" data-animation="fade-up">
                             <div class="inr">
                                 <a href="https://www.youtube.com/@WOORITEENTEEN" class="btn sm youtube" title="우리틴틴 유투브 바로가기" target="_blank"><em>Youtube</em></a>
                                 <a href="https://www.instagram.com/woori.teenteen/" class="btn sm insta" title="우리틴틴 인스타그램 바로가기" target="_blank"><em>Instagram</em></a>
@@ -253,16 +264,29 @@
                     <!-- //video -->
                     <!-- app download -->
                     <div class="section download">
-                        <div class="title-wrap">
-                            <p class="title">지금 바로 우리틴틴을<br>이용해보세요</p>
-                            <p class="sub-title">우리WON뱅킹 앱에서 간편하게 이용할 수 있어요!</p>
+                        <div class="title-wrap" data-animation="fade-up">
+                            <p class="title">지금이 딱, 우리틴틴을<br>시작할 타이밍!</p>
                         </div>
-                        <div class="img-wrap">
-                            <img src="../static/images/img_main_app.png" width="260" alt="앱 다운로드 이미지" />
-                        </div>
-                        <div class="btn-group">
-                            <div class="inr">
-                                <a href="" class="btn md outlined" target="_blank" title="새 창 열기">우리WON 뱅킹 앱 다운로드</a>
+                        <div class="main-download-wrap">
+                            <div class="swiper download-swiper" data-animation="fade-up">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="../static/images/img_main_app.png" width="260" alt="앱 다운로드 이미지" />
+                                        <div class="btn-group">
+                                            <div class="inr">
+                                                <a href="" class="btn md outlined" target="_blank" title="새 창 열기">우리WON 뱅킹 앱 다운로드</a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="swiper-slide">
+                                        <img src="../static/images/img_main_app2.png" width="260" alt="앱 다운로드 이미지" />
+                                        <div class="btn-group">
+                                            <div class="inr">
+                                                <a href="" class="btn md outlined">부모 동의하러 가기</a>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -272,7 +296,7 @@
             <!-- ============= [e]페이지 컨텐츠 ============= -->
 
             <!-- ============= [s]하단 고정 버튼 영역 ============= -->
-            <div class="btn-group bottom">
+            <div class="btn-group bottom hidden">
                 <div class="inr">
                     <a href="" role="button" class="btn primary lg"><em>우리틴틴 시작하기</em></a>
                 </div>
@@ -320,17 +344,11 @@
                 <div class="btms-body">
                     <ul class="terms-list">
                         <li>
-                            <div class="chk-type2">
-                                <input type="checkbox" name="termsTit" id="chk1">
-                                <label for="chk1">우리틴틴 서비스 이용약관</label>
-                            </div>
+                            <span>우리틴틴 서비스 이용약관</span>
                             <a href="" role="button" aria-haspopup="true" aria-expanded="false" class="btn-arrow"><span class="hide">자세히 보기</span></a>
                         </li>
                         <li>
-                            <div class="chk-type2">
-                                <input type="checkbox" name="termsTit" id="chk2">
-                                <label for="chk2">우리틴틴 카드 이용약관</label>
-                            </div>
+                            <span>우리틴틴 카드 이용약관</span>
                             <a href="" role="button" aria-haspopup="true" aria-expanded="false" class="btn-arrow"><span class="hide">자세히 보기</span></a>
                         </li>
                     </ul>
@@ -339,14 +357,9 @@
             </div>
         </div>
         <!-- ============= [e]팝업 영역 ============= -->
+
         <script>
-            lottie.loadAnimation({
-                container: document.getElementById('lottie-trans'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: '../static/images/json/trans.json' // JSON 경로
-            });
+            
         </script>
     </body>
 </html>
