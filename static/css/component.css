@@ -2,7 +2,7 @@
 
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.06.20
+ * LAST UPDATE : 2025.06.30
  * COMPONENT CSS
  * WSM 디자인 가이드에 정의된 디자인 컴포넌트 CSS
  * ======================================================================================================================= */
@@ -984,6 +984,11 @@
     overflow-y:auto;
     overflow-x:hidden;
  }
+ .btmsheet .btms-body .txt{
+    font-size:var(--font-size-b1);
+    line-height:var(--line-height-base);
+    color:var(--modeGrayNonOpaque-600);
+ }
  .btmsheet .btms-footer{
     padding:3.2rem 0 1.8rem 0;
  }
@@ -1381,6 +1386,14 @@
  }
  .terms-list li .chk-type2{
     padding-right:2rem;
+ }
+ .terms-list li > span{
+    display:inline-block;
+    min-height:2.4rem;
+    line-height:var(--line-height-base);
+    font-size:var(--font-size-b1);
+    font-weight:var(--font-weight-medium);
+    word-break:keep-all;
  }
  .terms-list li .btn-arrow{
     position:absolute;
