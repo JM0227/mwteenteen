@@ -1,10 +1,16 @@
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.06.20
+ * LAST UPDATE : 2025.06.30
  * COMMON UI JS
  * ======================================================================================================================= */
 $(function(){
 	initSetting.init(); //페이지 기본 이벤트
+
+	//스크롤 복원 막기
+	if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
 });
 
 var initSetting = {
@@ -508,6 +514,8 @@ var initSetting = {
 		$('.field-box textarea').change(function () {
 			resizeTextarea($(this));
 		});
+
+		$('.btn-search').prev('input').addClass('no-bg');
 	},
 
 	/* ----------------------
@@ -744,6 +752,43 @@ var initSetting = {
 				});
 			}
 		});
-	}
-	
+	},
+
+	/* ----------------------
+	* 갤럭시 S21 대응
+	* ----------------------
+	*/
+	'androidS21Fix': function() {
+      const $btn = document.querySelector('.btn-group.bottom');
+      const $container = document.querySelector('#wrap #container');
+      if (!$btn || !$container) return;
+
+      const ua = navigator.userAgent;
+      const isS21 = /SM-G99/.test(ua); // Galaxy S21 계열: SM-G991 ~ SM-G998
+
+      if (!isS21) return; //S21 아니면 종료
+
+      // 1. 버튼 살짝 띄우기
+      $btn.style.position = 'fixed';
+      $btn.style.left = '0';
+      $btn.style.right = '0';
+      $btn.style.zIndex = '9999';
+      $btn.style.bottom = '58px'; //인디케이터 위로 살짝 띄움
+
+      // 2. 콘텐츠 패딩 보정
+      const btnHeight = $btn.offsetHeight || 48;
+      $container.style.paddingBottom = (btnHeight + 72) + 'px'; //버튼 + 인디케이터용 여백
+
+      // 3. 가짜 여백 div 삽입
+      if (!document.querySelector('.ghost-padding')) {
+        const ghost = document.createElement('div');
+        ghost.className = 'ghost-padding';
+        ghost.style.height = '72px';
+        ghost.style.pointerEvents = 'none';
+        $container.appendChild(ghost);
+      }
+
+      //console.log('Galaxy S21 하단 대응');
+    },
+
 }
