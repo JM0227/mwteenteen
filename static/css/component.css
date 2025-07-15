@@ -2,7 +2,7 @@
 
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.06.30
+ * LAST UPDATE : 2025.07.07
  * COMPONENT CSS
  * WSM 디자인 가이드에 정의된 디자인 컴포넌트 CSS
  * ======================================================================================================================= */
@@ -33,6 +33,7 @@
     font-style:normal;
     vertical-align:middle;
  }
+
  /* color */
 .btn.primary{
     background:var(--blue-500);
@@ -76,6 +77,7 @@
     border-color:var(--modeGrayNonOpaque-500);
     color:var(--modeGrayNonOpaque-700);
 }
+
 /* size */
 .btn.xxsm{
     font-size: var(--font-size-d2);
@@ -116,11 +118,13 @@
 .btn.lg em{
     padding:0 0.7rem;
 }
-/* 캡슐형 */
+
+/* capsule */
 .btn.xsm.round{
     padding:.7rem 1.2rem;
     border-radius:2rem;
 }
+
 /* text */
 .btn.text{
     padding:.5rem 0;
@@ -141,14 +145,8 @@
     text-decoration:underline;
     border:0;
 }
-/* ico button */
-.btn-arrow{
-    display:inline-block;
-    width:2rem;
-    height:2.4rem;
-    background:url('../images/arr_right.png') no-repeat left top;
-    background-size:2rem;
-}
+
+/* ico + button */
 .btn.goggle em{
     background:url('../images/ico_googlePlay.png') no-repeat left center;
     background-size:1.8rem;
@@ -169,7 +167,18 @@
     background:url('../images/ico_insta2.png') no-repeat left center;
     background-size:1.4rem;
 }
-/* ico */
+.btn.more{
+    height:4.8rem;
+    border:0;
+    border-top:solid 1px var(--modeGrayNonOpaque-100);
+}
+.btn.more > em{
+    padding-right:2rem;
+    background:url('../images/arr_more.png') no-repeat right center;
+    background-size:1.6rem;
+}
+
+/* ico button */
 .ico{
     display:inline-block;
     width:2.4rem;
@@ -185,16 +194,12 @@
     height:1.6rem;
     background-size:1.6rem;
 }
-/* btn more */
-.btn.more{
-    height:4.8rem;
-    border:0;
-    border-top:solid 1px var(--modeGrayNonOpaque-100);
-}
-.btn.more > em{
-    padding-right:2rem;
-    background:url('../images/arr_more.png') no-repeat right center;
-    background-size:1.6rem;
+.btn-arrow{
+    display:inline-block;
+    width:2rem;
+    height:2.4rem;
+    background:url('../images/arr_right.png') no-repeat left top;
+    background-size:2rem;
 }
 .btn-search{
     width:2rem;
@@ -206,12 +211,6 @@
 
 /* ----------------------
  * Button Group
- * ----------------------
- */
-
-
-/* ----------------------
- * Bottom CTA
  * ----------------------
  */
  .btn-group .inr{
@@ -233,13 +232,18 @@
  .btn-group.asy .inr .btn:last-child{
     width:65%;
  }
+
+
+/* ----------------------
+ * Bottom CTA
+ * ----------------------
+ */
  .btn-group.bottom{
     position:fixed;
     bottom:0;
     width:100%;
     z-index:1028;
     background:#fff;
-    background:linear-gradient(0deg, white, transparent);
 }
 .btn-group.bottom .inr{
     padding:1.8rem 1.6rem;
@@ -294,6 +298,7 @@
 .radio-type1 input[type="radio"]:checked ~ label:before{
     background-image:url('../images/ico_chkType1_active.png')
 }
+
 /* type2 */
 .radio-type2{
     position:relative;
@@ -331,6 +336,7 @@
 .radio-type2 input[type="radio"]:checked ~ label:before{
     background-image:url('../images/ico_chkType2_active.png')
 }
+
 /* radio list */
 .radio-list > *{
     display:block;
@@ -396,6 +402,7 @@
 .chk-type1 input[type="checkbox"]:checked ~ label:before{
     background-image:url('../images/ico_chkType1_active.png')
 }
+
 /* type2 */
 .chk-type2{
     position:relative;
@@ -433,6 +440,7 @@
 .chk-type2 input[type="checkbox"]:checked ~ label:before{
     background-image:url('../images/ico_chkType2_active.png')
 }
+
 /* checkbox list */
 .chk-list > *{
     display:block;
@@ -455,6 +463,7 @@
 .radio-list .chk-type2 input[type="checkbox"]:checked ~ label:before{
     opacity:1;
 }
+
 
 /* ----------------------
  * Input Field
@@ -502,6 +511,11 @@
     line-height:var(--line-height-base);
     color:var(--modeGrayNonOpaque-700);
 }
+.field-box .field .item > input:-webkit-autofill,
+.field-box .field .item > input:-webkit-autofill:hover, 
+.field-box .field .item > input:-webkit-autofill:focus {
+  background:transparent;
+}
 .field-box .field .item > textarea{
     overflow: hidden;
     resize: none;
@@ -534,6 +548,7 @@
     background:url('../images/ico_at.png') no-repeat center 2.5rem;
     background-size:2rem;
 }
+
 /* type : select */
 .field-box .field .item > input.select{
     padding-right:3rem;
@@ -543,6 +558,7 @@
 .field-box .field .item > input.select + .btn-del{
     right:30px !important;
 }
+
 /* type : number */
 .field-box input[type="number"]{
     -moz-appearance: textfield;
@@ -552,6 +568,7 @@
     -webkit-appearance: none;
     margin: 0;
 }
+
 /* type : search */
 .field-box input[type="search"]{
     padding-right:3rem !important;
@@ -574,7 +591,47 @@
     right:0;
     bottom:1.4rem;
 }
-/* message */
+
+/* type : certification */
+.field-box .field .item .cert-box{
+    position:absolute;
+    right:0;
+    top:2rem;
+}
+.field-box .field .item .cert-box .txt-timer{
+    padding-right:1.6rem;
+    font-size:var(--font-size-b2);
+    font-weight:var(--font-weight-regular);
+    line-height:var(--line-height-adjust);
+    color:#2658ED;
+}
+
+/* type : multiple */
+.field-box .field.multiple{
+    display:flex;
+}
+.field-box .field.multiple .item{
+    flex:1 1 auto;
+}
+.field-box .field.multiple .item:first-child{
+    margin-right:1rem;
+}
+.field-box .field.multiple .item:last-child{
+    margin-left:1rem;
+}
+.field-box .field.multiple .item:first-child .label-wrap{
+    width:200%;
+}
+
+/* type : phone */
+.field-box .field.phone .item:first-child{
+    width:45%;
+}
+.field-box .field.phone .item:last-child{
+    width:55%;
+}
+
+/* message(info) */
 .field-box .msg{
     padding-top:0 !important;
     padding-left:2.1rem;
@@ -587,6 +644,7 @@
     background:url('../images/ico_info_null.png') no-repeat left -1px;
     background-size:1.7rem;
 }
+
 /* required */
 .field-box .field.required label::after{
     display:block;
@@ -599,6 +657,7 @@
     background:#EE444A;
     content:'';
 }
+
 /* state : disabled */
 .field-box .field.disabled{
     border-color:var(--modeGrayNonOpaque-50);
@@ -616,6 +675,7 @@
 .field-box .field .item > textarea[disabled]{
     background-color:transparent;
 }
+
 /* state : read only */
 .field-box .field.readonly{
     border-color:var(--modeGrayNonOpaque-50);
@@ -630,6 +690,7 @@
 .field-box .field .item > textarea[readonly]{
     background-color:transparent;
 }
+
 /* state : success */
 .field-box .field.success{
     border-color:var(--green-500);
@@ -638,6 +699,7 @@
     color:#047B5B;
     background-image:url('../images/ico_success.png');
 }
+
 /* state : error */
 .field-box .field.error{
     border-color:var(--red-500);
@@ -654,39 +716,7 @@
     color:#CC1E24;
     background-image:url('../images/ico_error.png');
 }
-/* certification */
-.field-box .field .item .cert-box{
-    position:absolute;
-    right:0;
-    top:2rem;
-}
-.field-box .field .item .cert-box .txt-timer{
-    padding-right:1.6rem;
-    font-size:var(--font-size-b2);
-    font-weight:var(--font-weight-regular);
-    line-height:var(--line-height-adjust);
-    color:#2658ED;
-}
-/* multiple */
-.field-box .field.multiple{
-    display:flex;
-}
-.field-box .field.multiple .item{
-    flex:1 1 auto;
-}
-.field-box .field.multiple .item:first-child{
-    margin-right:1rem;
-}
-.field-box .field.multiple .item:last-child{
-    margin-left:1rem;
-}
-/* phone */
-.field-box .field.phone .item:first-child{
-    width:45%;
-}
-.field-box .field.phone .item:last-child{
-    width:55%;
-}
+
 /* animate */
 .field-box .animate{
     display:flex;
@@ -748,6 +778,7 @@
 
 
 
+
 /* ----------------------
  * Tab
  * ----------------------
@@ -758,6 +789,7 @@
  .tab-box .tab-content.active{
     display:block;
  }
+
  /* type 1 */
  .tab-list.type1{
     display:flex;
@@ -787,6 +819,7 @@
     font-weight:var(--font-weight-bold);
     color:var(--modeGrayNonOpaque-800);
  }
+
  /* type2 */
 .tab-list.type2 {
     display: flex;
@@ -813,6 +846,7 @@
     color: var(--white-100);
     background: var(--blue-500);
 }
+
 /* swiper tab */
 .tab-swiper-wrap{
     position: fixed;
@@ -1113,6 +1147,12 @@
     border-bottom-left-radius:1.6rem;
     border-bottom-right-radius:1.6rem;
  }
+
+
+ /* ----------------------
+ * Body Lock(popup 오픈 시)
+ * ----------------------
+ */
  .popLock body{
     overflow:hidden;
  }
@@ -1198,12 +1238,6 @@
     right:1.6rem;
     top:1.6rem;
 }
-
-
-/* ----------------------
- * Data List
- * ----------------------
- */
 
 
 /* ----------------------
@@ -1348,11 +1382,11 @@
  }
  .accordian.terms .item-title{
     position:relative;
-    padding:1.6rem;
+    padding:1.6rem 3.6rem 1.6rem 1.6rem;
     border-radius:.8rem;
     background:rgba(115, 132, 149, 0.05);
  }
- .accordian.terms .item-title::after{
+.accordian.terms .item-title::after{
     position:absolute;
     right:1.6rem;
     top:50%;
@@ -1363,7 +1397,7 @@
     background-size:2rem;
     transform:rotate(180deg);
     content:'';
- }
+}
  .accordian.terms .item-title label{
     font-weight:var(--font-weight-semibold);
  }
@@ -1430,12 +1464,6 @@
     font-weight:var(--font-weight-semibold);
     line-height:var(--line-height-base);
  }
-
-
-/* ----------------------
- * Messages
- * ----------------------
- */
 
 
 /* ----------------------
