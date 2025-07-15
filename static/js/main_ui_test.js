@@ -34,25 +34,22 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.intro",
-            start: "top 90%",
+            start: "top 80%",
             once: true,
         },
     });
 
     gsap.from(".section.intro .fade-item", {
         opacity: 0,
-        y: 40,
-        duration: 0.8,
+        x: -50,
+        duration: 1,
         ease: "power3.out",
-        stagger: 0.2,
+        stagger: 0.4,
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.intro",
-            start: "top 70%",
+            start: "top 60%",
             once: true,
-        },
-        onComplete: () => {
-            document.querySelector(".btn-bottom.bottom")?.classList.remove("hidden");
         },
     });
 
@@ -69,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.event",
-            start: "top 90%",
+            start: "top 80%",
             once: true,
         },
     });
@@ -83,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.event",
-            start: "top 50%",
+            start: "top 60%",
             once: true,
         },
         onEnter: () => {
@@ -142,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.card",
-            start: "top 90%",
+            start: "top 80%",
             once: true,
         },
     });
@@ -156,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
           trigger: ".section.card",
-          start: "top 50%",
+          start: "top 60%",
           once: true,
           onEnter: () => {
       
@@ -199,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.trans",
-            start: "top 90%",
+            start: "top 80%",
             once: true,
         },
     });
@@ -231,19 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	* Use
 	* ----------------------
 	*/
-    gsap.from(".section.use .title-wrap", {
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.6,
-        delay: 0.2,
-        scrollTrigger: {
-            trigger: ".section.use",
-            start: "top 90%",
-            once: true,
-        },
-    });
 
     gsap.from(".section.use .use-item.conven", {
         opacity: 0,
@@ -268,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.use .use-item.safe",
-            start: "top 60%",
+            start: "top 80%",
             once: true,
         },
     });
@@ -282,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.use .use-item.with",
-            start: "top 60%",
+            start: "top 80%",
             once: true,
         },
     });
@@ -314,8 +298,8 @@ document.addEventListener("DOMContentLoaded", () => {
         stagger: 0.6,
         delay: 0.2,
         scrollTrigger: {
-            trigger: ".section.video .video-wrap",
-            start: "top 70%",
+            trigger: ".section.video",
+            start: "top 60%",
             once: true,
         },
     });
@@ -328,12 +312,16 @@ document.addEventListener("DOMContentLoaded", () => {
         stagger: 0.6,
         delay: 0.2,
         scrollTrigger: {
-            trigger: ".section.video .btn-group",
-            start: "top 65%",
+            trigger: ".section.video",
+            start: "top 40%",
             once: true,
         },
     });
 
+    /* ----------------------
+	* Download
+	* ----------------------
+	*/
     gsap.from(".section.download .tab-list.type1", {
         opacity: 0,
         y: 40,
@@ -342,8 +330,8 @@ document.addEventListener("DOMContentLoaded", () => {
         stagger: 0.6,
         delay: 0.2,
         scrollTrigger: {
-            trigger: ".section.download .tab-list.type1",
-            start: "top 70%",
+            trigger: ".section.download",
+            start: "top 80%",
             once: true,
         },
     });
@@ -356,8 +344,8 @@ document.addEventListener("DOMContentLoaded", () => {
         stagger: 0.6,
         delay: 0.2,
         scrollTrigger: {
-            trigger: ".section.download .title-wrap",
-            start: "top 50%",
+            trigger: ".section.download",
+            start: "top 60%",
             once: true,
         },
     });
@@ -370,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
         stagger: 0.6,
         delay: 0.2,
         scrollTrigger: {
-            trigger: ".section.download .img-wrap",
+            trigger: ".section.download",
             start: "top 50%",
             once: true,
         },
@@ -385,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
         delay: 0.2,
         scrollTrigger: {
             trigger: ".section.download .btn",
-            start: "top 85%",
+            start: "top 90%",
             once: true,
         },
     });
