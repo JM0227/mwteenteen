@@ -1,196 +1,221 @@
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.06.20
+ * LAST UPDATE : 2025.07.11
  * MAIN UI JS
  * ======================================================================================================================= */
-$(function () {
-    mainUi.init();
 
-    if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-  });
+document.addEventListener("DOMContentLoaded", () => {
+    //scrollTrigger 초기화
+    gsap.registerPlugin(ScrollTrigger);
 
-var mainUi = {
-	'init':function(){
-        mainUi.sectionVisual();
-        mainUi.sectionIntro();
-        mainUi.sectionEvent();
-        mainUi.sectionCard();
-        mainUi.sectionTrans();
-        mainUi.sectionUse();
-        mainUi.sectionVideo();
-        mainUi.sectionDownload();
-	},
-    
     /* ----------------------
-	* 공통 scroll animation
+	* Visual
 	* ----------------------
 	*/
-    scrollAnimation: {
-        observe: function (selector, delay = 200, callback) {
-          const section = document.querySelector(selector);
-          if (!section) return;
-      
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const animatedEls = entry.target.querySelectorAll('[data-animation]');
-      
-                animatedEls.forEach((el, i) => {
-                  setTimeout(() => {
-                    const animationType = el.dataset.animation; // fade-up, fade-in 등
-                    el.classList.add('in-view'); // 공통 클래스
-                    if (animationType) {
-                      el.classList.add(`in-view-${animationType}`);
-                    }
-      
-                    // 마지막 요소 콜백 실행
-                    if (i === animatedEls.length - 1 && typeof callback === 'function') {
-                      callback();
-                    }
-                  }, i * delay);
-                });
-      
-                observer.unobserve(entry.target);
-              }
-            });
-          }, {
-            threshold: 0.3
-          });
-      
-          observer.observe(section);
-        }
-    },
-    /* ----------------------
-	* Main Visual
-	* ----------------------
-	*/
-    'sectionVisual': function () {
-        mainUi.scrollAnimation.observe('.section.visual', 150, function () {
-            
-        });
-    },
+    gsap.from(".section.visual .fade-item", {
+        opacity: 0,
+        y: 80,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.2,
+        delay: 0.2,
+    });
+
     /* ----------------------
 	* Intro
 	* ----------------------
 	*/
-    'sectionIntro': function () {
-        const $btn = document.querySelector('.btn-group.bottom');
-        const $intro = document.querySelector('.section.intro');
+    gsap.from(".section.intro .title-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.2,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.intro",
+            start: "top 90%",
+            once: true,
+        },
+    });
 
-        if (!$btn || !$intro) return;
+    gsap.from(".section.intro .fade-item", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.2,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.intro",
+            start: "top 70%",
+            once: true,
+        },
+        onComplete: () => {
+            document.querySelector(".btn-bottom.bottom")?.classList.remove("hidden");
+        },
+    });
 
-        let isRevealed = false;
-
-        // 1. scroll animation 끝난 후 버튼 등장
-        mainUi.scrollAnimation.observe('.section.intro', 150, () => {
-            setTimeout(() => {
-                $btn.classList.remove('hidden');
-                isRevealed = true;
-
-                // scroll 감지 시작
-                window.addEventListener('scroll', toggleBtnByScroll);
-                toggleBtnByScroll(); // 첫 진입 시 상태 체크
-            }, 400);
-        });
-
-        // 2. scrollTop === 0 이면 버튼 숨기기
-        function toggleBtnByScroll() {
-            if (!isRevealed) return;
-
-            const scrollTop = window.scrollY || document.documentElement.scrollTop;
-            if (scrollTop === 0) {
-                $btn.classList.add('hidden');
-            } else {
-                $btn.classList.remove('hidden');
-            }
-        }
-    },
     /* ----------------------
-	* event
+	* Event
 	* ----------------------
 	*/
-    'sectionEvent': function () {
-        mainUi.scrollAnimation.observe('.section.event', 150, function () {
+    gsap.from(".section.event .title-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.event",
+            start: "top 90%",
+            once: true,
+        },
+    });
 
-        });
-
-        var swiper = new Swiper(".event-swiper", {
-            loop: true,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                type: "fraction",
-            },
-            breakpoints: {
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 24 
+    gsap.from(".section.event .fade-item", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.event",
+            start: "top 50%",
+            once: true,
+        },
+        onEnter: () => {
+            var swiper = new Swiper(".event-swiper", {
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
                 },
-                0: {
-                    slidesPerView: 1, // 모바일 기본값
-                    spaceBetween: 0
+                pagination: {
+                    el: ".swiper-pagination",
+                    type: "fraction",
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 24 
+                    },
+                    0: {
+                        slidesPerView: 1, // 모바일 기본값
+                        spaceBetween: 0
+                    }
+                },
+            });
+
+            // 자동재생 버튼 토글
+            $('.btn-autoplay').on('click', function () {
+                var $this = $(this);
+                var $text = $this.find('.hide');
+
+                if ($this.hasClass('pause')) {
+                    // 자동재생 멈춤
+                    swiper.autoplay.stop();
+                    $this.removeClass('pause');
+                    $text.text('자동재생');
+                } else {
+                    // 자동재생 시작
+                    swiper.autoplay.start();
+                    $this.addClass('pause');
+                    $text.text('멈춤');
                 }
-            },
-        });
+            });
+        },
+    });
 
-        // 자동재생 버튼 토글
-        $('.btn-autoplay').on('click', function () {
-            var $this = $(this);
-            var $text = $this.find('.hide');
-
-            if ($this.hasClass('pause')) {
-                // 자동재생 멈춤
-                swiper.autoplay.stop();
-                $this.removeClass('pause');
-                $text.text('자동재생');
-            } else {
-                // 자동재생 시작
-                swiper.autoplay.start();
-                $this.addClass('pause');
-                $text.text('멈춤');
-            }
-        });
-    },
     /* ----------------------
-	* card design
+	* Card
 	* ----------------------
 	*/
-    'sectionCard': function () {
-        mainUi.scrollAnimation.observe('.section.card', 150, function () {
-            // 애니메이션 다 끝난 후에 Swiper 실행
-            var swiper = new Swiper(".main-card-swiper", {
-            loop: true,
-            effect: "coverflow",
-            grabCursor: true,
-            autoplay: {
-                delay: 1500,
+    gsap.from(".section.card .title-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.card",
+            start: "top 90%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.card .fade-item", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: ".section.card",
+          start: "top 50%",
+          once: true,
+          onEnter: () => {
+      
+            const swiper = new Swiper(".main-card-swiper", {
+              loop: true,
+              effect: "coverflow",
+              grabCursor: true,
+              autoplay: {
+                delay: 2000,
                 disableOnInteraction: false,
-            },
-            slidesPerView: 'auto',
-            centeredSlides: true,
-            preventClicks: true,
-            coverflowEffect: {
+              },
+              speed: 600,
+              slidesPerView: "auto",
+              centeredSlides: true,
+              preventClicks: true,
+              spaceBetween: 12,
+              coverflowEffect: {
                 rotate: 0,
                 stretch: 40,
-                depth: 200,
+                depth: 250,
                 modifier: 1,
                 slideShadows: false,
-            },
+              },
             });
-        });
-    },
+            
+          },
+        },
+    });
+
     /* ----------------------
-	* trans
+	* Trans
 	* ----------------------
 	*/
-    'sectionTrans': function () {
-        mainUi.scrollAnimation.observe('.section.trans', 150, function () {
+    gsap.from(".section.trans .title-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.trans",
+            start: "top 90%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.trans .fade-item", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: ".section.trans .fade-item",
+          start: "top 80%",
+          once: true,
+          onEnter: () => {
             lottie.loadAnimation({
                 container: document.getElementById('lottie-trans'),
                 renderer: 'svg',
@@ -198,58 +223,170 @@ var mainUi = {
                 autoplay: true,
                 path: 'https://jm0227.github.io/mwteenteen/static/images/json/trans.json' // JSON 경로
             });
-        });
-    },
-    /* ----------------------
-	* use
-	* ----------------------
-	*/
-    'sectionUse': function () {
-        mainUi.scrollAnimation.observe('.section.use', 150, function () {
-            lottie.loadAnimation({
-                container: document.getElementById('lottie-conven'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: 'https://jm0227.github.io/mwteenteen/static/images/json/use_conven.json' // JSON 경로
-            });
-
-            lottie.loadAnimation({
-                container: document.getElementById('lottie-safe'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: 'https://jm0227.github.io/mwteenteen/static/images/json/use_safe.json' // JSON 경로
-            });
-            
-        });
-    },
+          },
+        },
+    });
 
     /* ----------------------
-	* video
+	* Use
 	* ----------------------
 	*/
-    'sectionVideo': function () {
-        mainUi.scrollAnimation.observe('.section.video', 150, function () {
-            
-        });
-    },
+    gsap.from(".section.use .title-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.use",
+            start: "top 90%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.use .use-item.conven", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.use",
+            start: "top 50%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.use .use-item.safe", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.use .use-item.safe",
+            start: "top 60%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.use .use-item.with", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.use .use-item.with",
+            start: "top 60%",
+            once: true,
+        },
+    });
+
     /* ----------------------
-	* App Download
+	* Video
 	* ----------------------
 	*/
-    'sectionDownload': function () {
-        mainUi.scrollAnimation.observe('.section.download', 150, function () {
-            var swiper = new Swiper(".download-swiper", {
-                allowTouchMove: false,
-                simulateTouch: false,
-                loop: true,
-                autoplay:{
-                    delay:3000,
-                },
-                speed: 1000,
-                effect: "fade",
-            });
-        });
-    },
-}
+
+    gsap.from(".section.video .title-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.video",
+            start: "top 80%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.video .video-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.video .video-wrap",
+            start: "top 70%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.video .btn-group", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.video .btn-group",
+            start: "top 65%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.download .tab-list.type1", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.download .tab-list.type1",
+            start: "top 70%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.download .title-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.download .title-wrap",
+            start: "top 50%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.download .img-wrap", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.download .img-wrap",
+            start: "top 50%",
+            once: true,
+        },
+    });
+
+    gsap.from(".section.download .btn", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.download .btn",
+            start: "top 85%",
+            once: true,
+        },
+    });
+});
