@@ -39,19 +39,40 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     });
 
-    gsap.from(".section.intro .fade-item", {
+    const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".section.intro",
+          start: "top 60%",
+          once: true
+        }
+      });
+      
+      // 1. fade-item들 순차적으로 등장
+      tl.from(".section.intro .fade-item", {
         opacity: 0,
         x: -50,
         duration: 1,
         ease: "power3.out",
-        stagger: 0.4,
-        delay: 0.2,
-        scrollTrigger: {
-            trigger: ".section.intro",
-            start: "top 60%",
-            once: true,
-        },
-    });
+        stagger: 0.2,
+        delay: 0.2
+      })
+      
+      // 2. 마지막 fade-item까지 끝난 뒤 → 버튼 보여주기
+      .add(() => {
+        const btn = document.querySelector(".btn-group.bottom");
+        btn.classList.remove("hidden");
+      })
+      
+      // 3. 버튼 애니메이션
+      .fromTo(".btn-group.bottom", {
+        opacity: 0,
+        y: 40
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      });
 
     /* ----------------------
 	* Event
