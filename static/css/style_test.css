@@ -463,6 +463,10 @@
     03. Main Page
 --------------------------------------------------------------------------------------- */
 /* scroll trigger */
+#wrap.main .btn-group.bottom{
+    background:#fff;
+    background:linear-gradient(180deg,rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
 #wrap.main .btn-group.bottom.hidden {
     opacity: 0;
     transform: translateY(40px);
@@ -531,7 +535,7 @@
     background:url('../images/ico_scrolldown.png') no-repeat center;
     background-size:4.4rem;
     animation: scroll-motion 1.5s infinite;
-    animation-delay: 1.5s; /* AOS delay랑 맞추기! */
+    animation-delay: 1.5s;
 
 }
 #wrap.main .section.visual .btn-scrollDown span{
