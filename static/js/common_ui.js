@@ -1,6 +1,6 @@
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.06.30
+ * LAST UPDATE : 2025.07.03
  * COMMON UI JS
  * ======================================================================================================================= */
 $(function(){
@@ -25,10 +25,11 @@ var initSetting = {
 		initSetting.termsList();
 		initSetting.tab();
 		initSetting.keypad();
-		initSetting.accordian();
+		initSetting.question();
 		initSetting.selectLoca();
 		initSetting.cardSwiper();
 		initSetting.tabSwiper();
+		initSetting.serviceInfo();
 	},
 
 	/* ----------------------
@@ -621,7 +622,7 @@ var initSetting = {
 	* 자주묻는 질문 accordian
 	* ----------------------
 	*/
-	'accordian':function(){
+	'question':function(){
 		$('.question-list .list-item .title').on('click', function () {
 			const $parent = $(this).parent();
 	
@@ -791,4 +792,22 @@ var initSetting = {
       //console.log('Galaxy S21 하단 대응');
     },
 
+	'serviceInfo': function () {
+		const $tit = $('.section.service .tit');
+
+		$tit.on('click', function () {
+			const isActive = $(this).hasClass('active');
+			$(this).toggleClass('active');
+
+			if (!isActive) {
+			// max-height가 적용되기 직후 프레임에 스크롤
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+				const offset = $(this).offset().top - 52;
+				$('html, body').stop().animate({ scrollTop: offset }, 300); // 속도도 살짝 줄여서 더 자연스럽게
+				});
+			});
+			}
+		});
+	},
 }
