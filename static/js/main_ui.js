@@ -438,8 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
-                //path: 'https://jm0227.github.io/mwteenteen/static/images/json/trans.json' // JSON 경로
-                path: 'https://wnimg.wooribank.com/img/mw/teenteen/json/trans.json' // JSON 경로
+                path: 'https://jm0227.github.io/mwteenteen/static/images/json/trans.json' // JSON 경로
             });
           },
         },
@@ -483,8 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        //path: 'https://jm0227.github.io/mwteenteen/static/images/json/safe.json' // JSON 경로
-        path: 'https://wnimg.wooribank.com/img/mw/teenteen/json/safe.json' // JSON 경로
+        path: 'https://jm0227.github.io/mwteenteen/static/images/json/safe.json' // JSON 경로
     });
 
     gsap.from(".section.use .use-item.with", {
