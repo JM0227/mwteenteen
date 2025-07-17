@@ -2,7 +2,7 @@
 
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.07.07
+ * LAST UPDATE : 2025.07.16
  * COMPONENT CSS
  * WSM 디자인 가이드에 정의된 디자인 컴포넌트 CSS
  * ======================================================================================================================= */
@@ -510,6 +510,19 @@
     font-weight:var(--font-weight-semibold);
     line-height:var(--line-height-base);
     color:var(--modeGrayNonOpaque-700);
+}
+.field-box .field .item > input.masking{
+    position:relative;
+}
+.field-box .field .item > .img-masking{
+    display:none;
+    position:absolute;
+    left:1.6rem;
+    top:2.5rem;
+    width:9.5rem;
+    height:1.8rem;
+    background:url('../images/img_masking.png') no-repeat left center;
+    background-size:contain;
 }
 .field-box .field .item > input:-webkit-autofill,
 .field-box .field .item > input:-webkit-autofill:hover, 
