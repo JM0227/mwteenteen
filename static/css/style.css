@@ -694,6 +694,80 @@
 #wrap.main .section.event .banner-wrap.purple{
     background:rgb(229, 239, 255);
 }
+/* swiper */
+.cs-indicator{
+    position:absolute;
+    bottom:2.4rem;
+    right:2.4rem;
+    z-index:1;
+}
+.cs-indicator .inr{
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    position:relative;
+}
+.cs-indicator .inr .cs-box{
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:.4rem .8rem;
+    background:rgba(2, 12, 21, 0.72);
+    z-index:1;
+    border-radius:2.4rem;
+}
+.cs-indicator .swiper-button-next,
+.cs-indicator .swiper-button-prev{
+    position:relative;
+    left:auto;
+    right:auto;
+    top:auto;
+    bottom:auto;
+    margin:0;
+    width:1.2rem;
+    height:1.2rem;
+}
+.cs-indicator .swiper-button-next:after, .cs-indicator .swiper-button-prev:after{
+    font-size:0;
+}
+.cs-indicator .swiper-button-prev{
+    width:1.2rem;
+    height:1.2rem;
+    background:url('../images/ico_indicator_prev.png') no-repeat center;
+    background-size:1.2rem;
+}
+.cs-indicator .swiper-button-next{
+    width:1.2rem;
+    height:1.2rem;
+    background:url('../images/ico_indicator_next.png') no-repeat center;
+    background-size:1.2rem;
+}
+.cs-indicator .swiper-pagination{
+    position:relative;
+    left:auto;
+    right:auto;
+    top:auto;
+    bottom:auto;
+    width:auto;
+    padding:0 .8rem;
+    font-size:var(--font-size-d3);
+    line-height:var(--line-height-base);
+    color:rgba(255, 255, 255, .8);
+}
+.cs-indicator .swiper-pagination > .swiper-pagination-current{
+    font-weight:var(--font-weight-medium);
+    color:#fff;
+}
+.cs-indicator .btn-autoplay{
+    width:2rem;
+    height:2rem;
+    background:url('../images/ico_play.png') no-repeat center;
+    background-size:2rem;
+}
+.cs-indicator .btn-autoplay.pause{
+    background-image:url('../images/ico_pause.png');
+}
+/* custom carousel */
 #wrap.main .section.event .custom-carousel{
     position:relative;
     margin:0 2rem;
