@@ -85,7 +85,78 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     });
 
-    // 커스텀 캐러셀 초기화 함수
+    gsap.from(".section.event .fade-item", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.6,
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: ".section.event",
+            start: "top 50%",
+            once: true,
+            onEnter: () => {
+                initEventSwiper();
+            }
+        },
+    });
+
+    function initEventSwiper() {
+        const swiperEl = document.querySelector(".event-swiper");
+        const slides = swiperEl.querySelectorAll(".swiper-slide");
+        const indicator = swiperEl.querySelector(".cs-indicator");
+        const autoplayBtn = swiperEl.querySelector(".btn-autoplay");
+        const isSingleSlide = slides.length === 1;
+      
+        const eventSwiper = new Swiper(".event-swiper", {
+          loop: !isSingleSlide,
+          autoplay: isSingleSlide ? false : {
+            delay: 4000,
+            disableOnInteraction: false
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            type: "fraction",
+          },
+          breakpoints: {
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 24 
+            },
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 0
+            }
+          }
+        });
+      
+        // 슬라이드가 하나뿐이면 indicator 숨김
+        if (isSingleSlide) {
+          indicator?.style.setProperty("display", "none");
+        }
+      
+        // 자동재생 토글 버튼
+        autoplayBtn?.addEventListener("click", function () {
+          const $this = $(this);
+          const $text = $this.find('.hide');
+      
+          if ($this.hasClass('pause')) {
+            eventSwiper.autoplay.stop();
+            $this.removeClass('pause');
+            $text.text('자동재생');
+          } else {
+            eventSwiper.autoplay.start();
+            $this.addClass('pause');
+            $text.text('멈춤');
+          }
+        });
+    }
+    /*
     function initCustomCarousel() {
         // 캐러셀 요소 및 초기화 여부 확인
         const carousel = document.querySelector(".custom-carousel");
@@ -291,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
         onComplete: () => {
             //애니메이션 끝난 뒤 캐러셀 실행
             requestAnimationFrame(() => {
-            initCustomCarousel();
+                initCustomCarousel();
             });
         }
     });
@@ -332,7 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
           left: scrollLeft,
           behavior: "smooth"
         });
-      }
+      } */
 
 
     /* ----------------------
