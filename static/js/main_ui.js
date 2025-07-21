@@ -85,22 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     });
 
-    //커스텀 캐러셀
+    // 커스텀 캐러셀 초기화 함수
     function initCustomCarousel() {
-        // slide 찾고, 이미 초기화되었으면 중단
+        // 캐러셀 요소 및 초기화 여부 확인
         const carousel = document.querySelector(".custom-carousel");
-        if (!carousel) return;
-        if (carousel.classList.contains("inited")) return;
+        if (!carousel || carousel.classList.contains("inited")) return;
         carousel.classList.add("inited");
-
-        // 내부 요소들 선언
+    
+        // 내부 요소 및 상태 변수 설정
         const slideWrap = carousel.querySelector(".carousel-slides");
         const currentEl = carousel.querySelector(".pagination .current");
         const totalEl = carousel.querySelector(".pagination .total");
         const indicator = carousel.querySelector(".slide-indicator");
         const autoplayBtn = carousel.querySelector(".btn-autoplay");
-
-        // 상태 변수들
+    
         let currentIndex = 1;
         let autoPlayInterval = null;
         let isPlaying = false;
@@ -108,190 +106,173 @@ document.addEventListener("DOMContentLoaded", () => {
         const autoPlayDelay = 4000;
         let startX = 0;
         let endX = 0;
-
-        //모바일 전용: 슬라이드 처음과 끝 복제, infinite roop
+    
+        // 슬라이드 복제 (모바일에서 무한 루프 구현용)
         const cloneSlides = () => {
-            if (window.innerWidth >= 1024) return;
-            const slides = carousel.querySelectorAll(".slide");
-            const firstClone = slides[0].cloneNode(true);
-            const lastClone = slides[slides.length - 1].cloneNode(true);
-            slideWrap.insertBefore(lastClone, slides[0]);
-            slideWrap.appendChild(firstClone);
+        if (window.innerWidth >= 1024) return;
+        const slides = carousel.querySelectorAll(".slide");
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        slideWrap.insertBefore(lastClone, slides[0]);
+        slideWrap.appendChild(firstClone);
         };
-
-        //복제 슬라이드 제거 (리사이즈 시 초기화 용도)
+    
+        // 복제된 슬라이드 제거
         const removeClones = () => {
-            const allSlides = carousel.querySelectorAll(".slide");
-            if (allSlides.length <= 3) return;
-            allSlides.forEach((slide, i) => {
-                if (i === 0 || i === allSlides.length - 1) {
-                    slide.remove();
-                }
-            });
+        const allSlides = carousel.querySelectorAll(".slide");
+        if (allSlides.length <= 3) return;
+        allSlides.forEach((slide, i) => {
+            if (i === 0 || i === allSlides.length - 1) slide.remove();
+        });
         };
-
-        //슬라이드 위치 및 인디케이터 갱신
+    
+        // 슬라이드 이동 및 인디케이터 갱신
         const updateSlide = (instant = false) => {
-            const isMobile = window.innerWidth < 1024;
-            const allSlides = carousel.querySelectorAll(".slide");
-
-            if (allSlides.length === 1) {
-                //슬라이드가 하나일 경우 예외 처리
-                slideWrap.style.transition = "none";
-                slideWrap.style.transform = "none";
-                currentEl.textContent = "1";
-                totalEl.textContent = "1";
-                return;
-            }
-
-            if (!isMobile) {
-                //PC에선 transform 적용 안 함 (슬라이드 3개 동시에 노출)
-                slideWrap.style.transition = "none";
-                slideWrap.style.transform = "none";
-                return;
-            }
-
-            //모바일: 슬라이드 이동
-            slideWrap.style.transition = instant ? "none" : "transform 0.4s ease";
-            slideWrap.style.transform = `translateX(-${100 * currentIndex}%)`;
-
-            //인디케이터 표시용 실제 인덱스 계산
-            const totalSlides = allSlides.length - 2;
-            const realIndex = ((currentIndex - 1 + totalSlides) % totalSlides) + 1;
-            currentEl.textContent = realIndex;
-            totalEl.textContent = totalSlides;
+        const isMobile = window.innerWidth < 1024;
+        const allSlides = carousel.querySelectorAll(".slide");
+    
+        if (allSlides.length === 1) {
+            // 슬라이드가 하나뿐이면 transform 제거하고 인디케이터 고정
+            slideWrap.style.transition = "none";
+            slideWrap.style.transform = "none";
+            currentEl.textContent = "1";
+            totalEl.textContent = "1";
+            return;
+        }
+    
+        if (!isMobile) {
+            slideWrap.style.transition = "none";
+            slideWrap.style.transform = "none";
+            return;
+        }
+    
+        slideWrap.style.transition = instant ? "none" : "transform 0.4s ease";
+        slideWrap.style.transform = `translateX(-${100 * currentIndex}%)`;
+    
+        const totalSlides = allSlides.length - 2;
+        const realIndex = ((currentIndex - 1 + totalSlides) % totalSlides) + 1;
+        currentEl.textContent = realIndex;
+        totalEl.textContent = totalSlides;
         };
-        
-        //다음 슬라이드 이동
+    
+        // 다음 슬라이드로 이동
         const goToNext = () => {
-            if (isTransitioning || window.innerWidth >= 1024) return;
-            const allSlides = carousel.querySelectorAll(".slide");
-            if (currentIndex >= allSlides.length - 1) return;
-            currentIndex++;
-            updateSlide();
+        if (isTransitioning || window.innerWidth >= 1024) return;
+        const allSlides = carousel.querySelectorAll(".slide");
+        if (currentIndex >= allSlides.length - 1) return;
+        currentIndex++;
+        updateSlide();
         };
-
-        //이전 슬라이드 이동
+    
+        // 이전 슬라이드로 이동
         const goToPrev = () => {
-            if (isTransitioning || window.innerWidth >= 1024) return;
-        
-            const allSlides = carousel.querySelectorAll(".slide");
-        
-            //맨 앞 클론 슬라이드에서 진짜 마지막으로 점프 가능
-            if (currentIndex <= 0) {
-                currentIndex = allSlides.length - 2; // 마지막 실제 슬라이드 인덱스
-                updateSlide(true); // 순간 이동
-                return;
-            }
-        
-            currentIndex--;
-            updateSlide();
+        if (isTransitioning || window.innerWidth >= 1024) return;
+        const allSlides = carousel.querySelectorAll(".slide");
+        if (currentIndex <= 0) {
+            currentIndex = allSlides.length - 2;
+            updateSlide(true);
+            return;
+        }
+        currentIndex--;
+        updateSlide();
         };
-        //자동 재생 시작
+    
+        // 자동 재생 시작
         const startAutoplay = () => {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(goToNext, autoPlayDelay);
-            isPlaying = true;
-            autoplayBtn?.classList.add("pause");
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(goToNext, autoPlayDelay);
+        isPlaying = true;
+        autoplayBtn?.classList.add("pause");
         };
-
-        //자동 재생 정지
+    
+        // 자동 재생 정지
         const stopAutoplay = () => {
-            clearInterval(autoPlayInterval);
-            isPlaying = false;
-            autoplayBtn?.classList.remove("pause");
+        clearInterval(autoPlayInterval);
+        isPlaying = false;
+        autoplayBtn?.classList.remove("pause");
         };
-
-        //자동 재생 토글 버튼
+    
+        // 자동 재생 토글
         const toggleAutoplay = () => {
-            if (window.innerWidth >= 1024) return;
-            isPlaying ? stopAutoplay() : startAutoplay();
+        if (window.innerWidth >= 1024) return;
+        isPlaying ? stopAutoplay() : startAutoplay();
         };
-
+    
         autoplayBtn?.addEventListener("click", toggleAutoplay);
-
-        //트랜지션 중 상태 체크
+    
+        // 트랜지션 상태 추적 및 무한 루프 처리
         slideWrap.addEventListener("transitionstart", () => {
-            isTransitioning = true;
+        isTransitioning = true;
         });
-
+    
         slideWrap.addEventListener("transitionend", () => {
-            isTransitioning = false;
-            const allSlides = carousel.querySelectorAll(".slide");
-            const totalSlides = allSlides.length - 2;
-            if (currentIndex === 0) {
-                currentIndex = totalSlides;
-                updateSlide(true);
-            }
-            //무한 루프용 인덱스 재설정
-            if (currentIndex === allSlides.length - 1) {
-                currentIndex = 1;
-                updateSlide(true);
-            }
+        isTransitioning = false;
+        const allSlides = carousel.querySelectorAll(".slide");
+        const totalSlides = allSlides.length - 2;
+        if (currentIndex === 0) {
+            currentIndex = totalSlides;
+            updateSlide(true);
+        }
+        if (currentIndex === allSlides.length - 1) {
+            currentIndex = 1;
+            updateSlide(true);
+        }
         });
-
-        //터치 이벤트: 시작
+    
+        // 터치 이벤트 등록
         slideWrap.addEventListener("touchstart", (e) => {
-            startX = e.touches[0].clientX;
+        startX = e.touches[0].clientX;
         });
-
-        //터치 이벤트: 이동
+    
         slideWrap.addEventListener("touchmove", (e) => {
-            endX = e.touches[0].clientX;
+        endX = e.touches[0].clientX;
         });
-
-        //터치 이벤트: 종료 시 슬라이드 이동
+    
         slideWrap.addEventListener("touchend", () => {
-            const diff = endX - startX;
-            if (Math.abs(diff) > 50) {
-                diff < 0 ? goToNext() : goToPrev();
-            }
-            startX = 0;
-            endX = 0;
-            if (window.innerWidth < 1024) {
-                startAutoplay();
-            }
+        const diff = endX - startX;
+        if (Math.abs(diff) > 50) diff < 0 ? goToNext() : goToPrev();
+        startX = 0;
+        endX = 0;
+        if (window.innerWidth < 1024) startAutoplay();
         });
-        //반응형 상태 처리 (복제 및 autoplay 조절)
+    
+        // 반응형 처리 (PC/Mobile, 슬라이드 개수 조건에 따른 로직)
         const handleResponsiveState = () => {
-            stopAutoplay(); // autoplay 정지
-            removeClones(); // 기존 복제 슬라이드 제거
-            currentIndex = 1; // 슬라이드 인덱스 초기화
-
-            const slides = carousel.querySelectorAll(".slide");
-            const isDesktop = window.innerWidth >= 1024;
-            const isSingleSlide = slides.length === 1;
-
-            if (isSingleSlide) {
-                //슬라이드가 하나일 경우 → 캐러셀 기능 숨김
-                indicator?.style.setProperty("display", "none");
-                updateSlide(true);
-                return;
-            }
-
-            if (isDesktop) {
-                //PC 환경: transform 및 autoplay 제거
-                indicator?.style.setProperty("display", "none");
-                updateSlide(true);
-            } else {
-                //모바일 환경: 복제 후 무한 루프 + autoplay
-                cloneSlides();
-                indicator?.style.setProperty("display", "flex");
-                updateSlide(true);
-                startAutoplay();
-            }
+        stopAutoplay();
+        removeClones();
+        currentIndex = 1;
+    
+        const slides = carousel.querySelectorAll(".slide");
+        const isDesktop = window.innerWidth >= 1024;
+        const isSingleSlide = slides.length === 1;
+    
+        if (isSingleSlide) {
+            indicator?.style.setProperty("display", "none");
+            updateSlide(true);
+            return;
+        }
+    
+        if (isDesktop) {
+            indicator?.style.setProperty("display", "none");
+            updateSlide(true);
+        } else {
+            cloneSlides();
+            indicator?.style.setProperty("display", "flex");
+            updateSlide(true);
+            startAutoplay();
+        }
         };
-
-        //resize 이벤트로 반응형 상태 갱신
+    
+        // 창 크기 변경 시 반응형 재처리
         let resizeTimeout;
         window.addEventListener("resize", () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                handleResponsiveState();
-            }, 200);
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            handleResponsiveState();
+        }, 200);
         });
-
-        //초기 상태 설정
+    
+        // 최초 실행
         handleResponsiveState();
     }
 
