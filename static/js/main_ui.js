@@ -174,11 +174,19 @@ document.addEventListener("DOMContentLoaded", () => {
         //이전 슬라이드 이동
         const goToPrev = () => {
             if (isTransitioning || window.innerWidth >= 1024) return;
-            if (currentIndex <= 0) return;
+        
+            const allSlides = carousel.querySelectorAll(".slide");
+        
+            //맨 앞 클론 슬라이드에서 진짜 마지막으로 점프 가능
+            if (currentIndex <= 0) {
+                currentIndex = allSlides.length - 2; // 마지막 실제 슬라이드 인덱스
+                updateSlide(true); // 순간 이동
+                return;
+            }
+        
             currentIndex--;
             updateSlide();
         };
-
         //자동 재생 시작
         const startAutoplay = () => {
             clearInterval(autoPlayInterval);
