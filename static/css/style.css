@@ -2,7 +2,7 @@
 
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.07.17
+ * LAST UPDATE : 2025.07.21
  * STYLE CSS
  * ======================================================================================================================= */
 
@@ -124,18 +124,17 @@
 @keyframes scroll-motion {
 	0% {
         opacity:0;
-        bottom:6.7rem;
+        bottom:10rem;
       }
       50% {
         opacity:1;
-        bottom:4.7rem;
+        bottom:8rem;
       }
       100% {
         opacity:0;
-        bottom:6.7rem;
+        bottom:10rem;
       }
 }
-
 @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -227,7 +226,6 @@
         top:0;
       }
 }
-  
 @keyframes coinFloat {
     0% {
         transform: translateY(0);
@@ -239,6 +237,7 @@
         transform: translateY(0);
     }
 }
+
 
 
 
@@ -555,7 +554,7 @@
 }
 #wrap.main .section.visual .btn-scrollDown{
     position:absolute;
-    bottom:6.7rem;
+    bottom:10rem;
     left:50%;
     width:4.4rem;
     height:4.4rem;
@@ -643,7 +642,7 @@
     height:32rem;
     padding:2.4rem;
     border-radius:1.6rem;
-    background:#FFEDF3;
+    background:#FFEBF2;
     cursor:pointer;
 }
 #wrap.main .section.event .banner-wrap .img-wrap{
@@ -683,16 +682,10 @@
     color:var(--modeGrayNonOpaque-500);
 }
 #wrap.main .section.event .banner-wrap.yellow{
-    background:rgb(255, 245, 213);
+    background:#FFF4D1;
 }
 #wrap.main .section.event .banner-wrap.green{
-    background:rgb(227, 247, 241);
-}
-#wrap.main .section.event .banner-wrap.blue{
-    background:rgb(229, 239, 255);
-}
-#wrap.main .section.event .banner-wrap.purple{
-    background:rgb(229, 239, 255);
+    background:#DFF7EF;
 }
 /* swiper */
 .cs-indicator{
@@ -1096,18 +1089,23 @@
     background:linear-gradient(180deg, rgba(237, 239, 255, 0) 5%, rgba(237, 239, 255, 1) 32%, rgba(242, 255, 249, 1) 100%);
 }
 #wrap.main .section.download .title-wrap{
-    padding:1.8rem 2rem;
-    background:url('../images/img_main_download.png') no-repeat right 2rem center;
-    background-size:10.2rem;
-}
-#wrap.main .section.download .swiper-slide:last-child .title-wrap{
-    background-image:url('../images/img_main_download2.png');
+    padding:0 2rem 2rem;
 }
 #wrap.main .section.download .title-wrap .title{
+    padding:1.8rem 0;
     font-size:2.4rem;
+    background:url('../images/img_main_download.png') no-repeat right center;
+    background-size:10.2rem;
+}
+#wrap.main .section.download .title-wrap .sub-title{
+    padding-top:1.2rem;
+    font-size:var(--font-size-b2);
+}
+#wrap.main .section.download .swiper-slide:last-child .title-wrap .title{
+    background-image:url('../images/img_main_download2.png');
 }
 #wrap.main .section.download .img-wrap{
-    margin:0 auto 2rem;
+    margin:0 auto;
     text-align:center;
 }
 #wrap.main .section.download .img-wrap img{
@@ -1116,6 +1114,7 @@
 #wrap.main .section.download .btn{
     width:auto;
     height:4rem;
+    margin-top:2rem;
     padding:0.8rem 1.6rem;
     font-size:var(--font-size-b1);
     border-radius:2rem;
@@ -1232,10 +1231,14 @@
     #wrap.main .section.use .use-item-wrap .use-item + .use-item{
         margin-top:0;
     }
+    #wrap.main .section.event .swiper-slide{
+        flex:1 auto;
+    }
     .cs-indicator {
         display: none;
     }
-    #wrap.main .section.download .title-wrap{
+    #wrap.main .section.download .title-wrap .title{
+        padding-bottom:0;
         background:none !important;
     }
     #wrap.main .section.download .tab-box .tab-list.type1{
