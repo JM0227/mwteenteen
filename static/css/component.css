@@ -2,7 +2,7 @@
 
 /* =======================================================================================================================
  * AUTHOR : 이정민
- * LAST UPDATE : 2025.07.16
+ * LAST UPDATE : 2025.07.22
  * COMPONENT CSS
  * WSM 디자인 가이드에 정의된 디자인 컴포넌트 CSS
  * ======================================================================================================================= */
@@ -818,12 +818,16 @@
  }
  .tab-list.type1 li > span{
     display:inline-block;
-    height:4.2rem;
+    min-height:4.2rem;
     padding:1rem 0;
     font-size:var(--font-size-h5);
     font-weight:var(--font-weight-medium);
     line-height:var(--line-height-adjust);
     color:var(--modeGrayNonOpaque-500);
+ }
+ .tab-list.type1 li > span sub{
+    font-size:var(--font-size-b1);
+    font-weight:var(--font-weight-regular);
  }
  .tab-list.type1 li.active{
     border-bottom:solid 2px var(--modeGrayNonOpaque-800);
